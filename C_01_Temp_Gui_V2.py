@@ -48,7 +48,7 @@ class Converter():
            ["To Celsius", "#02C39A", "", 0, 0],
            ["To Fahrenheit", "#028090", "", 0, 1],
            ["Help / Info", "#019E95", "", 1, 0],
-           ["History / Export", "#05668D", "", 0, 1]
+           ["History / Export", "#05668D", "", 1, 1]
         ]
 
         # List to hold buttons once they have been made
@@ -57,8 +57,14 @@ class Converter():
         for item in button_details_list:
             self.make_button = Button(self.button_frame,
                                       text=item[0], bg=item[1],
-                                      fg="FFFFFF", font=("Arial", "12", "bold"),
+                                      fg="#FFFFFF", font=("Arial", "12", "bold"),
                                       width=12, command=item[2])
+            self.make_button.grid(row=item[3], column=item[4], padx=5, pady=5)
+
+            self.button_ref_list.append(self.make_button)
+
+# retrieve  history / export button and disable it at the start
+        self.to_history_button = self.button_ref_list[3].config(state=DISABLED)
 
 
 # main routine
