@@ -1,5 +1,5 @@
 from tkinter import *
-from functools import partial # to prevent unwanted windows
+from functools import partial  # to prevent unwanted windows
 
 
 class Converter:
@@ -47,6 +47,8 @@ class DisplayHelp:
 
         # if users press cross at top, close help and
         # 'releases' help button
+        self.help_box.protocol('WM_DELETE_WINDOW',
+                               partial(self.close_help, partner))
 
         self.help_frame = Frame(self.help_box, width=300,
                                 height=200)
