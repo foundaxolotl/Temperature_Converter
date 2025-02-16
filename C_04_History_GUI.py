@@ -94,8 +94,30 @@ class HistoryExport:
 
         # button list (button text | bg colour | command | row | column)
         button_details_list = [
-            ["Export", "#004C99", "", 0, 0]
-            ["Close", "#666666", partial(self.close_history)]
+            ["Export", "#004C99", "", 0, 0],
+            ["Close", "#666666", partial(self.close_history, partner), 0, 1],
         ]
 
+        for btn in button_details_list:
+            self.make_button = Button(self.hist_button_frame,
+                                      font=("Arial", "12", "bold"),
+                                      text=btn[0], bg=btn[1],
+                                      fg="#FFFFFF", width=12,
+                                      command=btn[2])
+            self.make_button.grid(row=btn[3], column=btn[4], padx=10, pady=10)
 
+    def close_history(self, partner):
+        """
+        Closes history dialogue box (and enables history button)
+        """
+        # Put history button back to normal...
+        partner.to_history_button.config(state=NORMAL)
+        self.history_Box.destroy()
+
+
+# main routine
+if __name__ == "__main__":
+    root = Tk()
+    root.title("Temperature Converter")
+    Converter()
+    root.mainloop()
